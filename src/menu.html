@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Reka Multi Aptika - 2</title>
+</head>
+
+<body>
+    <h1>Test 2</h1>
+
+    <pre class="menu"></pre>
+    <script>
+        const arr = [
+            [1, 0, "Beranda", 0],
+            [2, 0, "Product", 2],
+            [3, 2, "Product 1", 0],
+            [4, 2, "Product 2", 1],
+            [5, 2, "Product 3", 2],
+            [6, 0, "About Us", 1],
+            [7, 6, "Contact Us", 0],
+            [8, 4, "Product 2.1", 0],
+        ]
+
+        let string = []
+
+        arr.forEach((level1) => {
+            if (level1[1] === 0) {
+                const children1 = []
+
+                arr.forEach((level2) => {
+                    if (level2[1] === level1[0]) {
+                        const children2 = []
+
+                        arr.forEach((level3) => {
+                            if (level3[1] === level2[0]) {
+                                children2.push({
+                                    id: level3[0],
+                                    name: level3[2],
+                                    sort: level3[3],
+                                })
+
+                            }
+                        })
+
+                        children1.push({
+                            id: level2[0],
+                            name: level2[2],
+                            sort: level2[3],
+                            children: children2
+                        })
+                    }
+                })
+
+                string.push({
+                    id: level1[0],
+                    name: level1[2],
+                    sort: level1[3],
+                    children: children1
+                })
+
+            }
+        })
+
+        const container = document.querySelector('.menu')
+
+        string.sort((a, b) => a.sort - b.sort)
+        string.forEach((level1) => {
+            container.innerText += `- ${level1.name}\n`
+
+            level1.children.sort((a, b) => a.sort - b.sort)
+            level1.children.forEach((level2) => {
+                container.innerText += ` - ${level2.name}\n`
+
+                level2.children.sort((a, b) => a.sort - b.sort)
+                level2.children.forEach((level3) => {
+                    container.innerText += `  - ${level3.name}\n`
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

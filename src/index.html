@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Aptika</title>
+</head>
+
+<body>
+    <h1>Test 1</h1>
+    <pre class="stars">
+
+        </pre>
+    <script>
+        const starsContainer = document.querySelector(".stars")
+        const n = 5
+        function createTriangle (count) {
+            let string = ""
+            for (let i = 1; i <= count; i++) {
+                for (let j = 0; j < count - i; j++) {
+                    string += "&nbsp;"
+                }
+                for (let k = 0; k < i; k++) {
+                    string += "*"
+                }
+                string += "<br>"
+            }
+            return string
+        }
+        const result = createTriangle(n)
+        starsContainer.innerHTML = result;
+    </script>
+</body>
+
+</html>
